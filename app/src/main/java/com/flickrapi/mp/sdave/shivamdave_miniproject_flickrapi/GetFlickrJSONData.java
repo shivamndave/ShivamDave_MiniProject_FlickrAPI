@@ -96,8 +96,8 @@ public class GetFlickrJSONData extends GetData {
     public class DownloadJSONData extends GetJSONData {
 
         // After executing the _image list is created
-        protected void onPostExecute(String webData) {
-            super.onPostExecute(webData);
+        protected void onPostExecute(String dataWebStr) {
+            super.onPostExecute(dataWebStr);
             createResult();
         }
 
