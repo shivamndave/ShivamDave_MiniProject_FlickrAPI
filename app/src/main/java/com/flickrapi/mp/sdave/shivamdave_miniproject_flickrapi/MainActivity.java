@@ -1,21 +1,30 @@
 package com.flickrapi.mp.sdave.shivamdave_miniproject_flickrapi;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.GridView;
 
 
 public class MainActivity extends Activity {
+
+    FlickrGridAdapter _adapter;
+    ProgressDialog _progressSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        GetFlickrJSONData testFlickrDataGetter = new GetFlickrJSONData();
-        testFlickrDataGetter.execute();
+        _progressSpinner = new ProgressDialog(this);
+        _progressSpinner.setTitle("Loading Flickr Public Feed");
+        _progressSpinner.show();
+
+        ProcessImages processImageList = new ProcessImages();
+        processImageList.execute();
     }
 
 
@@ -39,5 +48,29 @@ public class MainActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    // Class that extends the GetFlickrJSONData class
+    // calls those functions (that create the parsed JSON image list)
+    // in addition to passing them into the FlickrGridAdapter
+    public class ProcessImages extends GetFlickrJSONData {
+        public ProcessImages() {
+            super();
+        }
+
+        public void execute() {
+            super.execute();
+            MakeResult makeResult = new MakeResult();
+            makeResult.execute();
+        }
+
+        public class MakeResult extends DownloadJSONData {
+            protected void onPostExecute(String dataWebStr) {
+                GridView _flickrGridView = (GridView) findViewById(R.id.flickrGridView);
+                _adapter = new FlickrGridAdapter(MainActivity.this, getImages());
+                _flickrGridView.setAdapter(_adapter);
+                _progressSpinner.dismiss();
+            }
+        }
     }
 }

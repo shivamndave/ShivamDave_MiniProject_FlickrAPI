@@ -19,6 +19,8 @@ public class FlickrGridAdapter extends BaseAdapter {
         this._fImages = fImages;
     }
 
+    // Creates the gridview by passing in an image from each position (out of 20)
+    // then the Aquery aq is used to display it in the grid position
     public View getView(int position, View convertView, ViewGroup parent) {
 
         LayoutInflater inflater = (LayoutInflater) _context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -29,8 +31,8 @@ public class FlickrGridAdapter extends BaseAdapter {
             gridView = new View(_context);
             gridView = inflater.inflate(R.layout.adapter_flickrgrid, null);
             AQuery aq = new AQuery(gridView);
-            String imgUrl = _fImages.get(position).get_image();
-            aq.id(R.id.grid_item_image).image(imgUrl);
+            String imageUrl = _fImages.get(position).get_image();
+            aq.id(R.id.grid_item_image).image(imageUrl);
             return gridView;
         }
         return convertView;
