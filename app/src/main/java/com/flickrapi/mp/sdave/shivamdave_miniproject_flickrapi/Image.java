@@ -5,7 +5,10 @@ package com.flickrapi.mp.sdave.shivamdave_miniproject_flickrapi;
 // variables needed (image is the main one we need, title will
 // be used for testing purposes)
 
-public class Image {
+import java.io.Serializable;
+
+public class Image implements Serializable{
+    private static final long serialVersionUID = 1L;
     private String _title;
     private String _link;
     private String _image;

@@ -1,12 +1,10 @@
 package com.flickrapi.mp.sdave.shivamdave_miniproject_flickrapi;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Toast;
 
 import com.androidquery.AQuery;
 
@@ -35,12 +33,6 @@ public class FlickrGridAdapter extends BaseAdapter {
             AQuery aq = new AQuery(gridView);
             String imageUrl = _fImages.get(position).get_image();
             aq.id(R.id.grid_item_image).image(imageUrl);
-            gridView.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    Intent intent = new Intent(_context, FullScreenModeActivity.class);
-                    _context.startActivity(intent);
-                }
-            });
             return gridView;
         }
         return convertView;

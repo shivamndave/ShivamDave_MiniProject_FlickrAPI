@@ -2,15 +2,15 @@ package com.flickrapi.mp.sdave.shivamdave_miniproject_flickrapi;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.GridView;
 
+import java.util.List;
+
 
 public class MainActivity extends Activity {
-
     FlickrGridAdapter _adapter;
     ProgressDialog _progressSpinner;
 
@@ -65,9 +65,12 @@ public class MainActivity extends Activity {
         }
 
         public class MakeResult extends DownloadJSONData {
+            List<Image> _currentImages;
+
             protected void onPostExecute(String dataWebStr) {
+                _currentImages = getImages();
                 GridView _flickrGridView = (GridView) findViewById(R.id.flickrGridView);
-                _adapter = new FlickrGridAdapter(MainActivity.this, getImages());
+                _adapter = new FlickrGridAdapter(MainActivity.this, _currentImages);
                 _flickrGridView.setAdapter(_adapter);
                 _progressSpinner.dismiss();
             }
