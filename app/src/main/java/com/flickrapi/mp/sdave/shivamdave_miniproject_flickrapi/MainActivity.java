@@ -14,6 +14,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // TESTS THE GetData CLASS
         String FLICKR_URL = "https://api.flickr.com/services/feeds/photos_public.gne?format=json&nojsoncallback=1";
         GetData testDataGetter = new GetData(FLICKR_URL);
         testDataGetter.execute();
