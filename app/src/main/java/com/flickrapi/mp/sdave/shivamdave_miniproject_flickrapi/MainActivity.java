@@ -13,6 +13,10 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        String FLICKR_URL = "https://api.flickr.com/services/feeds/photos_public.gne?format=json&nojsoncallback=1";
+        GetData testDataGetter = new GetData(FLICKR_URL);
+        testDataGetter.execute();
     }
 
 
