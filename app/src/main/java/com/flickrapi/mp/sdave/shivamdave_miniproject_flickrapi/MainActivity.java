@@ -18,6 +18,9 @@ public class MainActivity extends Activity {
         String FLICKR_URL = "https://api.flickr.com/services/feeds/photos_public.gne?format=json&nojsoncallback=1";
         GetData testDataGetter = new GetData(FLICKR_URL);
         testDataGetter.execute();
+
+        GetFlickrJSONData testFlickrDataGetter = new GetFlickrJSONData();
+        testFlickrDataGetter.execute();
     }
 
 

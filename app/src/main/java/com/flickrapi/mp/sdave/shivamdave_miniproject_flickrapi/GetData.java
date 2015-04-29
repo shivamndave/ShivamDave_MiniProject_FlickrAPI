@@ -70,11 +70,14 @@ public class GetData {
             Log.v(LOG_TAG, "JSON Data:" + _dataRaw);
             if (_dataRaw == null) {
                 if (_dataURL == null) {
+                    Log.v(LOG_TAG, "DLST = not initialized");
                     _currentDownloaderState = DownloaderState.NOT_INITIALIZED;
                 } else {
+                    Log.v(LOG_TAG, "DLST = failed");
                     _currentDownloaderState = DownloaderState.FAILED;
                 }
             } else {
+                Log.v(LOG_TAG, "DLST = working");
                 _currentDownloaderState = DownloaderState.WORKING;
             }
         }
@@ -98,6 +101,7 @@ public class GetData {
 
                     InputStream newInputStream = newConnection.getInputStream();
                     if (newInputStream == null) {
+                        Log.v(LOG_TAG, "newInputStream is null");
                         return null;
                     }
 
@@ -115,6 +119,7 @@ public class GetData {
                     return null;
                 } finally {
                     if (newConnection != null) {
+                        Log.v(LOG_TAG, "Safely disconnect");
                         newConnection.disconnect();
                     }
 
